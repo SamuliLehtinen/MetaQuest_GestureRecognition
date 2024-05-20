@@ -1,0 +1,12 @@
+digraph "C:/Users/sleht/OneDrive/Documents/MasterS2/PA_MetaQuest/Final_Git/MetaQuest_GestureSet/Scripts/Recognition_Scripts/Necessary_toRecognition"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  compound=true
+  subgraph clusterdir_37a36a17818a1b7f8517477529e3f5c7 {
+    graph [ bgcolor="#edf0f7", pencolor="grey50", label="Recognition_Scripts", fontname=Helvetica,fontsize=10 style="filled,dashed", URL="dir_37a36a17818a1b7f8517477529e3f5c7.html",tooltip=""]
+  dir_e1a8970b89ca0cfb2dae87e92d772808 [label="Necessary_toRecognition", fillcolor="#edf0f7", color="grey25", style="filled,bold", URL="dir_e1a8970b89ca0cfb2dae87e92d772808.html",tooltip=""];
+  }
+}

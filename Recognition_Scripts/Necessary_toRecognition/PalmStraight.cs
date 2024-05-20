@@ -1,14 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//using UnityEngine.EventSystems.OVRInputModule;
-
 
 public class PalmStraight : MonoBehaviour
 {
+    // This script is used to detect when a hand is in a palm straight state
+
     private OVRHand rightHand;
-    //private HandFinger rightHandFinger;
-    private bool isFistClosed = false;
 
     [SerializeField]
     public GameObject palmCube;
@@ -42,7 +40,6 @@ public class PalmStraight : MonoBehaviour
 
         bool isHandOpened = false;
         // Detection of the max distance between the finger tips and wrist base
-        //Debug.Log("PA Distance thumb tip : " + Vector3.Distance(thumbTip.Transform.position, wristBase.position));
         if (Vector3.Distance(thumbTip.Transform.position, wristBase.position) > 0.12f)
         {
             isThumbStraight = true;
@@ -51,8 +48,6 @@ public class PalmStraight : MonoBehaviour
         {
             isThumbStraight = false;
         }
-
-        //Debug.Log("PA Distance index tip : " + Vector3.Distance(indexTip.Transform.position, wristBase.position));
 
         if (Vector3.Distance(indexTip.Transform.position, handBase.Transform.position) > 0.17f)
         {
@@ -63,8 +58,6 @@ public class PalmStraight : MonoBehaviour
             isIndexStraight = false;
         }
 
-        //Debug.Log("PA Distance middle tip : " + Vector3.Distance(middleTip.Transform.position, wristBase.position));
-
         if (Vector3.Distance(middleTip.Transform.position, handBase.Transform.position) > 0.18f)
         {
             isMiddleStraight = true;
@@ -74,8 +67,6 @@ public class PalmStraight : MonoBehaviour
             isMiddleStraight = false;
         }
 
-        //Debug.Log("PA Distance ring tip : " + Vector3.Distance(ringTip.Transform.position, wristBase.position));
-
         if (Vector3.Distance(ringTip.Transform.position, handBase.Transform.position) > 0.17f)
         {
             isRingStraight = true;
@@ -84,8 +75,6 @@ public class PalmStraight : MonoBehaviour
         {
             isRingStraight = false;
         }
-
-        //Debug.Log("PA Distance pinky tip : " + Vector3.Distance(pinkyTip.Transform.position, wristBase.position));
 
         if (Vector3.Distance(pinkyTip.Transform.position, handBase.Transform.position) > 0.145f)
         {
@@ -116,7 +105,6 @@ public class PalmStraight : MonoBehaviour
         bool gap4 = false;
         bool areFingerClosed = false;
 
-        //Debug.Log("PA Distance gap1 : " + Vector3.Distance(thumbTip.Transform.position, indexKnuckle.Transform.position));
         if(Vector3.Distance(thumbTip.Transform.position, indexKnuckle.Transform.position) < 0.045f)
         {
             gap1 = true;
@@ -125,8 +113,6 @@ public class PalmStraight : MonoBehaviour
         {
             gap1 = false;
         }
-
-        //Debug.Log("PA Distance gap2 : " + Vector3.Distance(indexTip.Transform.position, indexKnuckle.Transform.position));
 
         if(Vector3.Distance(indexTip.Transform.position, middleTip.Transform.position) < 0.11f)
         {
@@ -137,8 +123,6 @@ public class PalmStraight : MonoBehaviour
             gap2 = false;
         }
         
-        //Debug.Log("PA Distance gap3 : " + Vector3.Distance(middleTip.Transform.position, indexTip.Transform.position));
-
         if(Vector3.Distance(middleTip.Transform.position, ringTip.Transform.position) < 0.026f)
         {
             gap3 = true;
@@ -148,8 +132,6 @@ public class PalmStraight : MonoBehaviour
             gap3 = false;
         }
         
-        //Debug.Log("PA Distance gap4 : " + Vector3.Distance(ringTip.Transform.position, pinkyTip.Transform.position));
-
         if(Vector3.Distance(ringTip.Transform.position, pinkyTip.Transform.position) < 0.037f)
         {
             gap4 = true;
@@ -159,7 +141,9 @@ public class PalmStraight : MonoBehaviour
             gap4 = false;
         }
 
-        if(gap1 && gap2 && gap3 && gap4)
+        // condition with gap 1 makes the straight palm detection unnatural and more difficult
+        //if(gap1 && gap2 && gap3 && gap4)
+        if(gap2 && gap3 && gap4)
         {
             areFingerClosed = true;
         }
@@ -168,29 +152,13 @@ public class PalmStraight : MonoBehaviour
             areFingerClosed = false;
         }
 
-        Debug.Log("PA isHandOpened : " + isHandOpened);
-        Debug.Log("PA areFingerClosed : " + areFingerClosed);
-
         if(isHandOpened && areFingerClosed)
         {
-            //palmCube.GetComponent<Renderer>().material = Material1;
-            //Debug.Log("PA Palm : is straight");
             return true;
         }
         else
         {
-            //palmCube.GetComponent<Renderer>().material = Material2;
-            //Debug.Log("PA Palm : is NOT straight");
-
             return false;
         }
-    }
-    
-
-    // Update is called once per frame
-    void Update()
-    {
-        // Check if the hand is in the fist closed state
-        isFistClosed = rightHand.GetFingerIsPinching(OVRHand.HandFinger.Index);
     }
 }

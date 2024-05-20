@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class FistBumpColorChange : MonoBehaviour
 {
+    //This script is used to change the color of a game object when the user performs a fist bump gesture
+    // Used in the project to demonstrate the fist bump gesture detections
+
     [SerializeField]
     public Material colorFistBump;
     [SerializeField]
@@ -24,10 +27,8 @@ public class FistBumpColorChange : MonoBehaviour
     {
         // Get the renderer component
         colorChanger.material = colorFistNoBump;
-       
         // Find the PoseDetector script and subscribe to its events
         poseDetector = FindObjectOfType<PoseDetectorDouble>();
-        
         if (poseDetector != null)
         {
             // Subscribe to the FistClosed event
@@ -56,12 +57,5 @@ public class FistBumpColorChange : MonoBehaviour
             // Change the material
             colorChanger.material = colorFistNoBump;
         }
-    }
-
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

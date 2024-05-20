@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PalmRotationLeft_Color : MonoBehaviour
 {
+    // This script is used to change the color of a game object when the user has the left hand in a straight palm state
+    // And the palm is facing up or down, but when nothing is detected, the color is set to normal
     [SerializeField]
     public Material colorNormal;
     [SerializeField]
@@ -14,8 +16,6 @@ public class PalmRotationLeft_Color : MonoBehaviour
     RotationDetectorSingle rotationDetector;
 
     GameObject leftHand;
-    
-
 
     private Renderer renderer;
 
@@ -27,11 +27,7 @@ public class PalmRotationLeft_Color : MonoBehaviour
 
     void Start()
     {
-        // Get the renderer component
-        // renderer.material = colorNormal;
-        // Debug.Log("PA FistColorChange init : color2 set.");
         leftHand = GameObject.FindGameObjectWithTag("LeftHand_Prefab");
-
         // Find the PoseDetector script and subscribe to its events
         rotationDetector = leftHand.GetComponent<RotationDetectorSingle>();
         if (rotationDetector != null)
@@ -40,7 +36,6 @@ public class PalmRotationLeft_Color : MonoBehaviour
             rotationDetector.palmUp_Palm += OnPalmUp_Palm;
             rotationDetector.palmDown_Palm += OnPalmDown_Palm;
             rotationDetector.palmNormal_Palm += OnPalmNormal_Palm;
-            //Debug.Log("PA FistColorChange : subscription done.");
         }
     }
 
@@ -72,12 +67,5 @@ public class PalmRotationLeft_Color : MonoBehaviour
             // Change the material
             renderer.material = colorNormal;
         }
-    }
-
-
-    void Update()
-    {
-
-        
     }
 }

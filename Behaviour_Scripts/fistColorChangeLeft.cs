@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class fistColorChangeLeft : MonoBehaviour
 {
+    // This script is used to change the color of a game object when the user closes the left hand
     [SerializeField]
     public Material colorFistClosed;
     [SerializeField]
     public Material colorFistOpened;
 
     PoseDetectorSingle poseDetector;
-
     GameObject leftHand;
-
     private Renderer renderer;
 
     private void Awake()
@@ -23,9 +22,7 @@ public class fistColorChangeLeft : MonoBehaviour
 
     void Start()
     {
-        // Get the renderer component
         renderer.material = colorFistOpened;
-        Debug.Log("PA FistColorChange init : color2 set.");
         leftHand = GameObject.FindGameObjectWithTag("LeftHand_Prefab");
         // Find the PoseDetector script and subscribe to its events
         poseDetector = leftHand.GetComponent<PoseDetectorSingle>();
@@ -34,7 +31,6 @@ public class fistColorChangeLeft : MonoBehaviour
             // Subscribe to the FistClosed event
             poseDetector.FistClosedLeft += OnFistClosedLeft;
             poseDetector.FistNotClosedLeft += OnFistNotClosedLeft;
-            Debug.Log("PA FistColorChange 123: subscription done.");
         }
     }
 
@@ -56,11 +52,5 @@ public class fistColorChangeLeft : MonoBehaviour
             // Change the material
             renderer.material = colorFistOpened;
         }
-    }
-
-    void Update()
-    {
-
-        
     }
 }

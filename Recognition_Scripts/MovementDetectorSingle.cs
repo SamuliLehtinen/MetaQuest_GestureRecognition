@@ -6,9 +6,8 @@ using System.Linq;
 
 public class MovementDetectorSingle : MonoBehaviour
 {
-
+    //This script is an unfinished attempt to detect hand movement
     PoseDetectorSingle poseDetector;
-
 
     // Define an enum for the direction
     public enum Handedness { Right, Left }

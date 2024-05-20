@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class palmColorChangeRight : MonoBehaviour
 {
+    // This script is used to change the color of a game object when the user opens the right palm
+
     [SerializeField]
     public Material PalmOpened;
     [SerializeField]
@@ -58,11 +60,4 @@ public class palmColorChangeRight : MonoBehaviour
             renderer.material = PalmClosed;
         }
     }
-
-    void Update()
-    {
-
-        
-    }
-    
 }

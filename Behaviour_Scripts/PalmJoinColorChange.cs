@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PalmJoinColorChange : MonoBehaviour
 {
+    // This script is used to change the color of a game object when the user mimics the reading of a book with both hands
+
     [SerializeField]
     public Material colorPalmJoin;
     [SerializeField]
@@ -24,7 +26,6 @@ public class PalmJoinColorChange : MonoBehaviour
     {
         // Get the renderer component
         colorChanger.material = colorPalmNoJoin;
-       
         // Find the PoseDetector script and subscribe to its events
         poseDetector = FindObjectOfType<PoseDetectorDouble>();
         
@@ -33,7 +34,6 @@ public class PalmJoinColorChange : MonoBehaviour
             // Subscribe to the FistClosed event
             poseDetector.PalmJoin += OnPalmJoin;
             poseDetector.PalmNoJoin += OnPalmNoJoin;
-            Debug.Log("PA PalmColorChange : subscription done.");
         }
         
     }
@@ -56,12 +56,5 @@ public class PalmJoinColorChange : MonoBehaviour
             // Change the material
             colorChanger.material = colorPalmNoJoin;
         }
-    }
-
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

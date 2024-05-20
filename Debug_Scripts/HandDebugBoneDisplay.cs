@@ -7,7 +7,7 @@ using System.Linq;
 
 public class HandDebugBoneDisplay : MonoBehaviour
 {
-
+    // This script was used to display the bones of the hand in the game scene, in the begining of the development
     [SerializeField]
     private OVRHand hand;
 
@@ -41,7 +41,6 @@ public class HandDebugBoneDisplay : MonoBehaviour
                                                             //Thumb                 //Index                  //Middle                 //Ring                  //Pinky             //Hand base       //middle finger middle knuckle
                 List<string> stringListRight = new List<string> { "Hand_MaxSkinnable",  "Body_LeftHandThumbMetacarpal", "Hand_MiddleTip",  "Hand_RingTip", "Body_LeftHandThumbTip", "FullBody_Start", "FullBody_LeftArmUpper"};
                 List<string> knucklesRight = new List<string> {"Hand_Index1", "Hand_Middle1", "Body_LeftHandWristTwist", "Body_RightArmLower", "FullBody_Head"};
-                //Transform[] transformArrayRight = new Transform[2];
 
                 foreach(var bone in handSkeleton.Bones)
                 {
@@ -58,7 +57,6 @@ public class HandDebugBoneDisplay : MonoBehaviour
                                                             //Thumb                 //Index                  //Middle                 //Ring                  //Pinky             //Hand base       //middle finger middle knuckle
                 List<string> stringListLeft = new List<string> { "Hand_MaxSkinnable",  "Body_LeftHandThumbMetacarpal", "Hand_MiddleTip",  "Hand_RingTip", "Body_LeftHandThumbTip", "FullBody_Start", "FullBody_LeftArmUpper"};
                 List<string> knucklesLeft = new List<string> {"Hand_Index1", "Hand_Middle1", "Body_LeftHandWristTwist", "Body_RightArmLower", "FullBody_Head"};
-                //Transform[] transformArrayLeft = new Transform[2];
 
                 foreach(var bone in handSkeleton.Bones)
                 {

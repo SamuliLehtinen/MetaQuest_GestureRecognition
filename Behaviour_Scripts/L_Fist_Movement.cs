@@ -2,19 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FistCubeRight_Move : MonoBehaviour
+public class L_Fist_Movement : MonoBehaviour
 {
-    // This script is used to move around a game object when the user closes the right hand
-    // When the fist is not detected any more, the object is placed back to its original position
+    // This script is used to move a game object with the left hand in a fist state
     PoseDetectorSingle poseDetector;
-    GameObject rightHand;
 
-    public float movementFactor = 2f;
+    GameObject leftHand;
 
     private bool movableCube = false;
+
     private bool startMovement = false;
 
     private Vector3 handStartPosition;
+
     private Vector3 cubeStartPosition;   
 
     private float xdif, ydif, zdif;
@@ -23,39 +23,33 @@ public class FistCubeRight_Move : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rightHand = GameObject.FindGameObjectWithTag("RightHand_Prefab");
-
+        leftHand = GameObject.FindGameObjectWithTag("LeftHand_Prefab");
         // Find the PoseDetector script and subscribe to its events
-        poseDetector = rightHand.GetComponent<PoseDetectorSingle>();
+        poseDetector = leftHand.GetComponent<PoseDetectorSingle>();
         if (poseDetector != null)
         {
-            poseDetector.FistClosedRight += OnFistClosedRight;
-            poseDetector.FistNotClosedRight += OnFistNotClosedRight;
+            poseDetector.FistClosedLeft += FistClosedLeft;
+            poseDetector.FistNotClosedLeft += FistNotClosedLeft;
         }
-
-        cubeStartPosition = transform.position;
-        
     }
 
-    private void OnFistClosedRight()
+    private void FistClosedLeft()
     {
-        
         startMovement = true;
+        cubeStartPosition = transform.position;
     }
 
-    private void OnFistNotClosedRight()
+    private void FistNotClosedLeft()
     {
         movableCube = false;
-        transform.position = cubeStartPosition;
     }
 
     // Update is called once per frame
     void Update()
     {
-
         if (startMovement)
         {
-            handStartPosition = rightHand.transform.position;
+            handStartPosition = leftHand.transform.position;
             startMovement = false;
             movableCube = true;
         }
@@ -64,12 +58,11 @@ public class FistCubeRight_Move : MonoBehaviour
         if (movableCube)
         {
             //retrieve the change of the hand position 
-            Vector3 handPosition = rightHand.transform.position;
+            Vector3 handPosition = leftHand.transform.position;
             //translate the change of the position of the hand to the position of the cube
             xdif = handPosition.x - handStartPosition.x;
             ydif = handPosition.y - handStartPosition.y;
             zdif = handPosition.z - handStartPosition.z;
-
             //update the position of the cube only on the x and z axis
             transform.position = new Vector3(cubeStartPosition.x + xdif, cubeStartPosition.y, cubeStartPosition.z + zdif);
         }

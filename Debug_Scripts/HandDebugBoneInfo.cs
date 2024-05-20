@@ -5,7 +5,7 @@ using TMPro;
 
 public class HandDebugBoneInfo : MonoBehaviour
 {
-
+    // This script was used to display the names of bones of the hand in the game scene, in the begining of the development
     [SerializeField]
     private TextMeshProUGUI boneText;
 
@@ -67,12 +67,10 @@ public class HandDebugBoneInfo : MonoBehaviour
         {
             indexKnuckle = bone.Transform.position;
             indexKnuckleZ = bone.Transform.position.z;
-            //Debug.Log("PA Index knucle, Z : " + indexKnuckle + " " + indexKnuckleZ);
         }
         //then update the index tip position + calculate the difference between tip and knuckle
         if(boneName ==  "Body_LeftHandThumbMetacarpal")
         {
-            //Debug.Log("PA indexKnuckle, Z IC2 : " + indexKnuckle + " " + indexKnuckleZ);
 
             indexTip = bone.Transform.position;
             indexTipZ = bone.Transform.position.z;
@@ -80,23 +78,7 @@ public class HandDebugBoneInfo : MonoBehaviour
             vecDifference = indexTip - indexKnuckle;
             fDifference = Vector3.Distance(indexTip, indexKnuckle);
             zDifference = indexTipZ - indexKnuckleZ;
-            //Debug.Log("PA indexTip : " + indexTip);
-            //Debug.Log("PA floatDifference (tip - knuckle) : " + fDifference);
-            //Debug.Log("PA Vector3Difference (tip - knuckle) : " + vecDifference);
-            //Debug.Log("PA Zdifference : " + zDifference);
         }
-        
-
-        //vecDifference = indexTip - indexKnuckle;
-        //fDifference = Vector3.Distance(indexTip, indexKnuckle);
-        //zDifference = indexTipZ - indexKnuckleZ;
-        //outside of if just gives 0 
-        //Debug.Log("PA indexTip OC: " + indexTip);
-        //Debug.Log("PA indexKnuckle OC: " + indexKnuckle);
-        //Debug.Log("PA floatDifference (tip - knuckle) OC : " + fDifference);
-        //Debug.Log("PA Vector3Difference (tip - knuckle) OC : " + vecDifference);
-        //Debug.Log("PA Zdifference OC: " + zDifference);
-        
         
     }
 }

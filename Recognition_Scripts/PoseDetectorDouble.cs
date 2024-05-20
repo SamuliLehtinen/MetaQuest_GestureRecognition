@@ -7,6 +7,8 @@ using System.Linq;
 
 public class PoseDetectorDouble : MonoBehaviour
 {
+    // This script is used to raise events when the user performs a specific gesture with both hands
+    // This works by subscribing to the events of the PoseDetectorSingle script
     private GameObject rightHand;
     private GameObject leftHand;
 
@@ -55,13 +57,9 @@ public class PoseDetectorDouble : MonoBehaviour
 
     void Awake()
     {
-        Debug.Log("PA PoseDetectorDouble awake : Awake");
-
         rightHand = GameObject.FindGameObjectWithTag("RightHand_Prefab");
         leftHand = GameObject.FindGameObjectWithTag("LeftHand_Prefab");
 
-        //fistDetector = GetComponent<FistClosed>();
-        //palmDetector = GetComponent<PalmStraight>();
         fistBumpDetector = GetComponent<FistBump>();
         palmJoinDetector = GetComponent<PalmJoin>();
 
@@ -103,8 +101,6 @@ public class PoseDetectorDouble : MonoBehaviour
         rightPalmOpened = false;
         leftPalmOpened = false;
         bothPalmOpened = false;
-
-        Debug.Log("PA PoseDetectorDouble start : Start");
     }
 
     // Update is called once per frame
@@ -143,18 +139,11 @@ public class PoseDetectorDouble : MonoBehaviour
         }
 
 
-        Debug.Log("PA PoseDetectorDouble Fist States : rightFistClosed = " + rightFistClosed + "/  leftFistClosed = " + leftFistClosed);
         if(rightFistClosed && leftFistClosed) bothFistClosed = true;
         else bothFistClosed = false;
 
-        Debug.Log("PA PoseDetectorDouble : bothFistClosed = " + bothFistClosed);
-       
-        Debug.Log("PA PoseDetectorDouble Palm States : rightPalmOpen = " + rightPalmOpened + "/  leftPalmOpen = " + leftPalmOpened);
-
         if(rightPalmOpened && leftPalmOpened) bothPalmOpened = true;
         else bothPalmOpened = false;    
-
-        Debug.Log("PA PoseDetectorDouble : bothPalmOpened = " + bothPalmOpened);
 
         if(bothFistClosed)
         {
@@ -163,33 +152,25 @@ public class PoseDetectorDouble : MonoBehaviour
             
             if (currentFistBump && FistBump != null)
             {
-                //Debug.Log("PA PoseDetector Script : FistBump Event Invoked");
                 //invoke the event
                 FistBump.Invoke();
             }
             else
             {
-                //Debug.Log("PA PoseDetector Script : FistBump Event Contrary Invoked");
                 //invoke the event
                 FistNoBump.Invoke();
             }
         }
         else
         {
-            //Debug.Log("PA PoseDetectorDouble : Both Fist not closed");
             FistNoBump.Invoke();
         }
 
         if(bothPalmOpened)
         {
-            //Debug.Log("PA PoseDetectorDouble pre palm polling : currentPalmJoin = " + currentPalmJoin);
-
             currentPalmJoin = palmJoinDetector.processPalmJoin(pinkyTip_Right,pinkyTip_Left);
-            //Debug.Log("PA PoseDetectorDouble palm polling : currentPalmJoin = " + currentPalmJoin);
             if(currentPalmJoin && PalmJoin != null)
             {
-                //Debug.Log("PA PoseDetector Script : PalmJoin Event Invoked");
-
                 PalmJoin.Invoke();
             }
             else

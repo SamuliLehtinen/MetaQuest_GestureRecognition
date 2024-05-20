@@ -4,27 +4,25 @@ using UnityEngine;
 
 public class CenterGameObject_Left : MonoBehaviour
 {
-
-    public string GameObjectName = "EmperorAngelfish";
+    // This script is used to center a game object on top of the left hand
+    public string GameObjectName = "tray";
     public float objectHeight;
-
     RotationDetectorSingle rotationDetector;
     PoseDetectorSingle positionDetector;
-
     GameObject leftHand;
     GameObject centeredObject;
-
     private bool centerObjectPosition = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        objectHeight = 0.3f;
-
+        objectHeight = 0.1f;
         centeredObject = GameObject.Find(GameObjectName);
         leftHand = GameObject.FindGameObjectWithTag("LeftHand_Prefab");
+
         rotationDetector = leftHand.GetComponent<RotationDetectorSingle>();
         positionDetector = leftHand.GetComponent<PoseDetectorSingle>();
+
         if (rotationDetector != null && positionDetector != null)
         {
             // Subscribe to the FistClosed event

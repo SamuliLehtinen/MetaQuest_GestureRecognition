@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class palmColorChangeLeft : MonoBehaviour
 {
+    // This script is used to change the color of a game object when the user opens the left palm
+
     [SerializeField]
     public Material colorPalmOpened;
     [SerializeField]
@@ -29,14 +31,12 @@ public class palmColorChangeLeft : MonoBehaviour
 
         // Find the PoseDetector script and subscribe to its events
         poseDetector = leftHand.GetComponent<PoseDetectorSingle>();
-        //Debug.Log("PA palmColorLeft start : poseDetector found " + poseDetector);
 
         if (poseDetector != null)
         {
             // Subscribe to the FistClosed event
             poseDetector.PalmOpenedLeft += OnPalmOpenedLeft;
             poseDetector.PalmNotOpenedLeft += OnPalmNotOpenedLeft;
-            //Debug.Log("PA palmColorLeft : subscription to left Palm event done.");
         }
     }
 
@@ -57,14 +57,6 @@ public class palmColorChangeLeft : MonoBehaviour
         {
             // Change the material
             colorChanger.material = colorPalmClosed;
-            //Debug.Log("PA palmColorChangeLeft : Palm Closed");
         }
     }
-
-    void Update()
-    {
-
-        
-    }
-    
 }

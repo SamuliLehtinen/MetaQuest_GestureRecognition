@@ -158,7 +158,6 @@ public class PoseDetectorSingle : MonoBehaviour
                     }
                 break;
                 case Handedness.Left:
-                    if (PalmOpenedLeft == null) Debug.Log("PA PoseDetector Bou : ciao");
                     if (currentPalm && PalmOpenedLeft != null)
                     {
                         //invoke the event
